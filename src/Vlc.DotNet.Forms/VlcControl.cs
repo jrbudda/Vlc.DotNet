@@ -146,6 +146,16 @@ namespace Vlc.DotNet.Forms
             }
         }
 
+        public void Play(string str, params string[] options)
+        {
+            //EndInit();
+            if (myVlcMediaPlayer != null)
+            {
+                myVlcMediaPlayer.SetMedia(str, options);
+                Play();
+            }
+        }
+
         public void Play(Uri uri, params string[] options)
         {
             //EndInit();

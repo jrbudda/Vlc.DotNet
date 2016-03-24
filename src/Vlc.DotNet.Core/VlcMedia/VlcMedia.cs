@@ -32,7 +32,18 @@ namespace Vlc.DotNet.Core
 #else
             : this(player, player.Manager.CreateNewMediaFromLocation(uri.AbsoluteUri).AddOptionToMedia(player.Manager, options))
 #endif
+        { }
+
+
+                    internal VlcMedia(VlcMediaPlayer player, string str, params string[] options)
+#if NET20
+            : this(player, VlcMediaInstanceExtensions.AddOptionToMedia(player.Manager.CreateNewMediaFromLocation(uri.AbsoluteUri), player.Manager, options))
+#else
+            : this(player, player.Manager.CreateNewMediaFromLocation(str).AddOptionToMedia(player.Manager, options))
+#endif
         {
+
+
         }
 
         internal VlcMedia(VlcMediaPlayer player, VlcMediaInstance mediaInstance)
